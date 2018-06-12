@@ -16,7 +16,7 @@ Style elements - Bootstrap 4
 - webpack-simple
 - reating events `$emit`
 
-![preview level](/img/level.png)
-![preview success](/img/success.png)
-![preview error](/img/error.png)
-![preview next level](/img/next-level.png)
+![preview level](/preview/level.png)
+![preview success](/preview/success.png)
+![preview error](/preview/error.png)
+![preview next level](/preview/next-level.png)
