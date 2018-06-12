@@ -3,7 +3,7 @@
     <h3>{{ x }} + {{ y }} = ?</h3>
     <hr>
     <div class="buttons">
-      <button class="btn btn-success" v-for="number of answers" @click="onAnswer(number)">
+      <button class="btn btn-success" v-for="number in answers" @click="onAnswer(number)">
         {{ number }}
       </button>
     </div>
