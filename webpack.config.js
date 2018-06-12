@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+var ghPages = require('gh-pages-webpack-plugin')
 
 module.exports = {
   entry: './src/main.js',
@@ -53,7 +54,19 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
+  plugins: [
+    new ghPages({
+        path: './public',
+        options: {
+            message: 'Update Home Page',
+            user: {
+                name: 'LenaVladi',
+                email: 'lenavladi.web@ya.ru'
+            }
+        }
+    })
+]
 }
 
 if (process.env.NODE_ENV === 'production') {

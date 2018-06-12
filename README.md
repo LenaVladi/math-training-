@@ -4,17 +4,19 @@ Vue testing framework and the Bootstrap library, for example, a simple applicati
 
 > A Vue.js project
 
-## Build Setup
+Style elements - Bootstrap 4
 
-``` bash
-# install dependencies
-npm install
+### Vue.js tasks:
+- vue-cli
+- component-oriented programming
+- various component states
+- animate elements using a special `<transition>` tag
+- computed properties
+- props
+- webpack-simple
+- reating events `$emit`
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-```
-
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+![preview level](/img/level.png)
+![preview success](/img/success.png)
+![preview error](/img/error.png)
+![preview next level](/img/next-level.png)
