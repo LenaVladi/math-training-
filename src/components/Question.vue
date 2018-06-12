@@ -3,7 +3,7 @@
     <h3>{{ x }} + {{ y }} = ?</h3>
     <hr>
     <div class="buttons">
-      <button class="btn btn-success" v-for="number in answers">
+      <button class="btn btn-success" v-for="number of answers" @click="onAnswer(number)">
         {{ number }}
       </button>
     </div>
@@ -18,12 +18,14 @@
         y: mtRund(100, 200)
       }
     },
-    computed: {
+    computed: { // объект свойств рассчитанных на основе других
+      good() {
+        return this.x + this.y;
+      },
       answers() {
-        var good = this.x + this.y;
-        var res = [];
+        let res = [this.good];
         while (res.length < 4) {
-          var num = mtRund(good - 20, good + 20);
+          let num = mtRund(this.good - 20, this.good + 20);
 
             if(res.indexOf(num) === -1) {
               res.push(num);
@@ -31,8 +33,17 @@
         }
 
         return res.sort(function() {
-            return Math.random() > 0.5;
+            return Math.random() > 0.5; // случайная сортировка массива
         });
+      }
+    },
+    methods: {
+      onAnswer(num) {
+        if(num == this.good) {
+          this.$emit('succsess'); // создаем событие для передачи управления в др.компонент
+        } else {
+          this.$emit('error', `${this.x} + ${this.y} = ${this.good}!`);
+        }
       }
     }
   }
