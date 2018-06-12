@@ -18,8 +18,8 @@
 
 <style scoped>
   div {
+    padding: 10px;
     text-align: center;
-    padding: 20px;
   }
 
   h2, btn {

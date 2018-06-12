@@ -1,6 +1,6 @@
 <template>
   <section class="training">
-    <h1>Math training</h1>
+    <h1>Math training. Level {{ level + 1 }}</h1>
     <hr>
     <div class="progress">
       <div class="progress-bar" :style="progressStyles">
@@ -15,13 +15,18 @@
         <question v-else-if="state == 'question'"
                   @succsess="onQuestionSuccsess"
                   @error="onQuestionError"
+                  :settings="levels[level]"
         ></question>
         <message v-else-if="state == 'message'"
                 v-bind:type="message.type"
                 :text="message.text"
                 @onNext="onNext"
         ></message>
-        <result-screen v-else-if="state == 'result'"></result-screen>
+        <result-screen v-else-if="state == 'result'"
+                       :stats="stats"
+                       @repeat="onStart"
+                       @nextLevel="onNextLevel"
+        ></result-screen>
         <div v-else>Unknown state</div>
       </transition>
     </div>
@@ -42,7 +47,28 @@
           success: 0,
           error: 0
         },
-        questionMax: 3
+        questionMax: 3,
+        level: 0,
+        levels: [
+          {
+            from: 10,
+            to: 40,
+            range: 5,
+            variants: 2
+          },
+          {
+            from: 100,
+            to: 200,
+            range: 20,
+            variants: 4
+          },
+          {
+            from: 500,
+            to: 900,
+            range: 40,
+            variants: 6
+          }
+        ]
       }
     },
 
@@ -60,6 +86,8 @@
     methods: {
       onStart() {
         this.state = 'question';
+        this.stats.success = 0;
+        this.stats.error = 0;
       },
       onQuestionSuccsess() {
         this.state = 'message';
@@ -74,7 +102,16 @@
         this.stats.error++;
       },
       onNext() {
-        this.state = 'question';
+        if(this.questDone < this.questionMax) {
+          this.state = 'question';
+        } else {
+          this.state = 'result';
+        }
+
+      },
+      onNextLevel() {
+        this.level++;
+        this.onStart();
       }
     }
   }
@@ -100,6 +137,10 @@
 
   .flip-leave-active {
     animation: flipOutX 0.3s linear;
+  }
+
+  .alert {
+    padding: 5px 20px;
   }
 
   @keyframes flipInX {

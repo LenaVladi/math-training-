@@ -12,10 +12,11 @@
 
 <script>
   export default {
+    props: ['settings'],
     data () {
       return {
-        x: mtRund(100, 200),
-        y: mtRund(100, 200)
+        x: mtRund(this.settings.from, this.settings.to),
+        y: mtRund(this.settings.from, this.settings.to)
       }
     },
     computed: { // объект свойств рассчитанных на основе других
@@ -24,8 +25,8 @@
       },
       answers() {
         let res = [this.good];
-        while (res.length < 4) {
-          let num = mtRund(this.good - 20, this.good + 20);
+        while (res.length < this.settings.variants) {
+          let num = mtRund(this.good - this.settings.range, this.good + this.settings.range);
 
             if(res.indexOf(num) === -1) {
               res.push(num);
