@@ -50,7 +50,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve('./src/index.js', '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: 'https://lenavladi.github.io/math-training-/',
 
     /**
      * Source Maps
